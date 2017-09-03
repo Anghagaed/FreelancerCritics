@@ -1,12 +1,14 @@
 This is a project for University of California Merced Fall 2017 CSE 120 - Software Engineering taught by Professor Chi Yan Leung.
 
-The members of the team handling this project is 
+The members of the team handling this project:
 Hang Liang
 Yun Chul Chang
 Sarah Ibanga
 
+Note: So far the app is focused on the Central Valley. In the future it may be extended to more locations and managing city events.
+
 App name: 
-Features: - Yelp for Freelancers (List upcoming events, Review Businesses, Top Destinations in an area, etc.)
+Features: - Yelp for Freelancers (List upcoming events, Review Local Businesses or freelancer work, Top Destinations in an area, etc.)
 Platform:
 IDE/Developing 
 Tools:
