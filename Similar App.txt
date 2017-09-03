@@ -1,5 +1,5 @@
 yelp 
-fiverr
+fiverr app (Platform: mobile-iOS; Features : buy/request service, sell service; Advantage: freelancers can make a reputation for themselves; Disadvantage: Slow selection process for jobs  
 freelancer.com
 gofundme
 uber.com
