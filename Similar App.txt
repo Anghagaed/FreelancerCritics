@@ -2,5 +2,6 @@ yelp
 fiverr app (Platform: mobile-iOS; Features : buy/request service, sell service; Advantage: freelancers can make a reputation for themselves; Disadvantage: Slow selection process for jobs)  
 freelancer.com (platform:web and mobile; Features: Post Job Request/Self-advertisement; Advantage: Job postings are bids in real time, fast; Disadvantage: Frauds are frequent)
 gofundme (platform:web and mobile; Features: Allows for fundraiser to be done online. Advantage: Big reach, clients don't have to wired money directly. Disadvantage: Frauds, money laws differs from state to state --> company will have issues)
-uber.com
-Foursquare
+Uber (Platform: iOS, Android; Features: offer ridesharing service in cheap and convenient way; Advantage: hassle-free payment system, realtime display for available Uber driver location; Disadvantages: lax driver selection = ride experience may vary)
+Foursquare (Platform: iOS, Android, Windows (mobile); Features: offer ratings and reviews on nearby businesses; Advantage: easy search for trending businesses nearby the user, tags (food, shopping, nightlife) to narrow the search; Disadvantages: difficult access to specific business (can only be searched by tags and reviews))
+
