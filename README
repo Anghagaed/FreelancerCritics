@@ -12,3 +12,5 @@ Features: - Yelp for Freelancers (List upcoming events, Review Local Businesses 
 Platform:
 IDE/Developing 
 Tools:
+ - Node.js Version V8.6.0
+ - Database: mySQL Community
