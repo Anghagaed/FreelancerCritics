@@ -123,34 +123,25 @@ con.connect(function(err) {
 
 	// end: insert_vars
 	
-	//delete user
-con.connect(function(err) {
-  if (err) throw err;
-  var sql = "DELETE FROM User WHERE username = 'Cindy45'";
-  con.query(sql, function (err, result) {
+//delete user
+  var sql1 = "DELETE FROM User WHERE username = 'Cindy45'";
+  con.query(sql1, function (err, result) {
     if (err) throw err;
     console.log("Number of records deleted: " + result.affectedRows);
-  });
-});
+  });//ends delete
 
 //insert user
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  var sql = "INSERT INTO User (ID,username,profileID,password,accountType,creationDate) VALUES (1,'Tommy56',546,'shootingstars4','Customer','10/06/17')";
-  con.query(sql, function (err, result) {
+  var sql2 = "INSERT INTO User (ID,username,profileID,password,accountType,creationDate) VALUES (1,'Tommy56',546,'shootingstars4','Customer','10/06/17')";
+  con.query(sql2, function (err, result) {
     if (err) throw err;
     console.log("1 record inserted");
-  });
-});
+  });//ends insert
+    
 //update user password 
-con.connect(function(err) {
-  if (err) throw err;
-  var sql = "UPDATE User SET password = 'kanyon45' WHERE username = 'Tom345'";
-  con.query(sql, function (err, result) {
+  var sql3 = "UPDATE User SET password = 'kanyon45' WHERE username = 'Tom345'";
+  con.query(sql3, function (err, result) {
     if (err) throw err;
     console.log(result.affectedRows + " record(s) updated");
-  });
-});
+});//ends update
 
-});
+}); //ends connection
