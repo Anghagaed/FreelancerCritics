@@ -2,6 +2,10 @@
 // note: host, user, password may vary (but Hang and Yun have equal cred.)
 var mysql = require('mysql');
 
+var DatabaseServer;
+var PreparedStatement;
+var Server;
+
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
