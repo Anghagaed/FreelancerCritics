@@ -122,6 +122,14 @@ con.connect(function(err) {
 	// start: insert_vars
 
 	// end: insert_vars
+    
+    
+//insert user
+  var sql5 = "INSERT INTO User (ID,username,profileID,password,accountType,creationDate) VALUES (1,'Cindy45',546,'drinkham4','Freelancer','10/08/17')";
+  con.query(sql5, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });//ends insert    
 	
 //delete user
   var sql1 = "DELETE FROM User WHERE username = 'Cindy45'";
@@ -138,7 +146,7 @@ con.connect(function(err) {
   });//ends insert
     
 //update user password 
-  var sql3 = "UPDATE User SET password = 'kanyon45' WHERE username = 'Tom345'";
+  var sql3 = "UPDATE User SET password = 'kanyon45' WHERE username = 'Tommy56'";
   con.query(sql3, function (err, result) {
     if (err) throw err;
     console.log(result.affectedRows + " record(s) updated");
