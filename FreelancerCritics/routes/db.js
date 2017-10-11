@@ -1,5 +1,4 @@
 // connect to mysql
-// note: host, user, password may vary (but Hang and Yun have equal cred.)
 var mysql = require('mysql');
 
 var DatabaseServer;
