@@ -31,7 +31,6 @@ con.connect(function(err) {
 	// start: create_tables
 	// note: check variable names (sanity check) and variable types like VARCHAR length
 	// for common variable types, check: https://stackoverflow.com/questions/354763/common-mysql-fields-and-their-appropriate-data-types
-	
 	// create Profile (or ProfilePage) table
 	con.query("CREATE TABLE Profile(ID INT NOT NULL UNIQUE, "
 								+  "name VARCHAR(255) NOT NULL, "
@@ -49,7 +48,7 @@ con.connect(function(err) {
 	con.query("CREATE TABLE User(ID INT NOT NULL UNIQUE, " 
 							+	"username VARCHAR(20) NOT NULL UNIQUE, "
 							+	"profileID INT NOT NULL UNIQUE, "					// "profilePageID"
-		  					+       "password  VARCHAR(15) NOT NULL,"
+		  					+   "password  VARCHAR(15) NOT NULL,"
 		  					+	"accountType VARCHAR(10) NOT NULL, "
 							+	"creationDate TIMESTAMP NOT NULL, "					// "accountCreationDate"
 							+	"PRIMARY KEY (ID), "
@@ -84,72 +83,128 @@ con.connect(function(err) {
 								+  "FOREIGN KEY (userID) REFERENCES User(ID)"		// ^ solution
 								+  ");", function (err, result) {
   	if (err) throw err;
-    console.log("Table  is created");
+    console.log("Table History is created");
   });
 	// end: create_tables
 	
-	// start: display tables
+	// start: display_tables
 	// Profile
 	con.query("DESCRIBE Profile;", function (err, rows, fields) {
-  	if (err) throw err;
-  	console.log("Profile:start");
-    console.log(rows);
-    console.log("Profile:end");
-  });
+	 	if (err) throw err;
+	 	console.log("Profile:start");
+	   console.log(rows);
+	   console.log("Profile:end");
+	 });
 	// User
 	con.query("DESCRIBE User;", function (err, rows, result) {
-  	if (err) throw err;
-  	console.log("User:start");
-    console.log(rows);
-    console.log("User:end");
-  });
+	 	if (err) throw err;
+	 	console.log("User:start");
+	   console.log(rows);
+	   console.log("User:end");
+	 });
 	// Reivew
 	con.query("DESCRIBE Review;", function (err, rows, result) {
-  	if (err) throw err;
-  	console.log("Review:start");
-    console.log(rows);
-    console.log("Review:end");
-  });
+	 	if (err) throw err;
+	 	console.log("Review:start");
+	   console.log(rows);
+	   console.log("Review:end");
+	 });
 	// History
 	con.query("DESCRIBE History;", function (err, rows, result) {
-  	if (err) throw err;
-  	console.log("History:start");
-    console.log(rows);
-    console.log("History:end");
-  });
-	// end: create_db
+	 	if (err) throw err;
+	 	console.log("History:start");
+	   console.log(rows);
+	   console.log("History:end");
+	 });
+	// end: display_tables
 
 	// start: insert_vars
-
+    // insert profile
+    var sql = "INSERT INTO Profile (ID,name,profileContent,phone,email,education,skills) VALUES (1,'Cindy Candy','I like candies and ham. Message me if you want me to eat them for you.','3336669999','supermachoeater@abc.com','middle school','eating');";
+	con.query(sql, function (err, result) {
+		if (err) throw err;
+		console.log("1 record inserted in Profile");
+	});
+	// insert user
+	sql = "INSERT INTO User (ID,username,profileID,password,accountType,creationDate) VALUES (1,'Cindy45',1,'drinkham4','Freelancer','2017-10-07  03:14:07.72');";
+	con.query(sql, function (err, result) {
+		if (err) throw err;
+		console.log("1 record inserted in User");
+	});
+	// display result
+	// display profile
+	sql = "SELECT * FROM Profile;";
+	con.query(sql, function (err, results) {
+		console.log("Start displaying the inserted Profile");
+		if (err) throw err;
+		console.log("1st record in Profile:\n",results[0]);
+		console.log("End displaying the inserted Profile");
+	});
+	// display user
+	sql = "SELECT * FROM User;";
+	con.query(sql, function (err, results) {
+		console.log("Start displaying the inserted User");
+		if (err) throw err;
+		console.log("1st record in User:\n",results[0]);
+		console.log("End displaying the inserted User");
+	});
 	// end: insert_vars
     
-    
-//insert user
-  var sql5 = "INSERT INTO User (ID,username,profileID,password,accountType,creationDate) VALUES (1,'Cindy45',546,'drinkham4','Freelancer','10/08/17')";
-  con.query(sql5, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-  });//ends insert    
-	
-//delete user
-  var sql1 = "DELETE FROM User WHERE username = 'Cindy45'";
-  con.query(sql1, function (err, result) {
-    if (err) throw err;
-    console.log("Number of records deleted: " + result.affectedRows);
-  });//ends delete
+    // start: update_vars
+    sql = "UPDATE Profile SET education = 'high school' WHERE ID = 1";
+    con.query(sql, function (err, result) {
+		if (err) throw err;
+		console.log("Profile (education) was updated");
+	});
+	sql = "UPDATE User SET password = 'ham<3-c@ndy' WHERE ID = 1;";
+	con.query(sql, function (err, result) {
+		if (err) throw err;
+		console.log("User (password) was updated");
+	});
+	// display result
+	// display profile
+	sql = "SELECT * FROM Profile;";
+	con.query(sql, function (err, results) {
+		console.log("Start displaying the updated Profile");
+		if (err) throw err;
+		console.log("1st record in Profile:\n",results[0]);
+		console.log("End displaying the updated Profile");
+	});
+	// display user
+	sql = "SELECT * FROM User;";
+	con.query(sql, function (err, results) {
+		console.log("Start displaying the updated User");
+		if (err) throw err;
+		console.log("1st record in User:\n",results[0]);
+		console.log("End displaying the updated User");
+	});
+    // end: update_vars
 
-//insert user
-  var sql2 = "INSERT INTO User (ID,username,profileID,password,accountType,creationDate) VALUES (1,'Tommy56',546,'shootingstars4','Customer','10/06/17')";
-  con.query(sql2, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-  });//ends insert
-    
-//update user password 
-  var sql3 = "UPDATE User SET password = 'kanyon45' WHERE username = 'Tommy56'";
-  con.query(sql3, function (err, result) {
-    if (err) throw err;
-    console.log(result.affectedRows + " record(s) updated");
-});//ends update
-
+    // start: delete_vars
+    // delete user
+	sql = "DELETE FROM User WHERE ID = 1;";
+	con.query(sql, function (err, results) {
+		if (err) throw err;
+		console.log("Delete User was successful");
+	});
+	// delete profile
+    sql = "DELETE FROM Profile WHERE ID = 1;";
+	con.query(sql, function (err, results) {
+		if (err) throw err;
+		console.log("Delete Profile was successful");
+	});
+	// display result
+	// display profile
+	sql = "SELECT COUNT(ID) FROM Profile;";
+	con.query(sql, function (err, results) {
+		if (err) throw err;
+		console.log("# of records in Profile:\n",results[0]);
+	});
+	// display user
+	sql = "SELECT COUNT(ID) FROM User;";
+	con.query(sql, function (err, results) {
+		if (err) throw err;
+		console.log("# of records in User:\n",results[0]);
+	});
+    // end: delete_vars
 }); //ends connection
