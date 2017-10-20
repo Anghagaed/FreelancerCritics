@@ -12,13 +12,22 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
+// routes
+//var index = require('./routes/index');
+//var loginpage = require('./routes/loginpage');
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// Set directory to contain the templates ('views')
+app.set('views', path.join(__dirname, 'views'));
+// Set view engine to use, in this case 'some_template_engine_name'
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.use(routes);
 
 // catch 404 and forward to error handler
@@ -37,6 +46,13 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  //console.log("There is no error page. So sad.");
+});
+
+
+// listen on port 3000
+app.listen(3000, function () {
+  console.log('Express app listening on port 3000');
 });
 
 module.exports = app;
