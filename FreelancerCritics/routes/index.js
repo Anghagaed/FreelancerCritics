@@ -1,14 +1,14 @@
-// index.js - home page
-
 var express = require('express');
 var router = express.Router();
 
-// main page
-router.get('/', function(req, res) {
-  res.render('index');
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Index' });
 });
-router.get('/loginpage/', function(req, res) {
-  res.render('loginpage');
-});
+function func() {
+	router.redirect('redirect');
+}
 
 module.exports = router;
+
+

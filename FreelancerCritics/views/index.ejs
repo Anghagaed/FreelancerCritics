@@ -1,40 +1,11 @@
-<% var title = 'Login' %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <style>
-      body {
-        padding: 50px;
-        font: 13px Helvetica, Arial, sans-serif;
-      }
-      .error {
-        color: red
-      }
-      .success {
-        color: green;
-      }
-    </style>
+    <title>index</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
-<h1>Login</h1>
-  <%- message %>
-  Try accessing <a href="/restricted">/restricted</a>, then authenticate with "tj" and "foobar".
-  <form method="post" action="/login">
-    <p>
-      <label>Username:</label>
-      <input type="text" name="username">
-    </p>
-    <p>
-      <label>Password:</label>
-      <input type="text" name="password">
-    </p>
-    <p>
-      <input type="submit" value="Login">
-    </p>
-  </form>
-
-<% include foot %>
+    <h1></h1>
+    <p>Welcome to index</p>
   </body>
 </html>
