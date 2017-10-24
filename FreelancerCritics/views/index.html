@@ -2,14 +2,18 @@
 <html>
   <head>
     <title>index</title>
-    <!--<link rel='stylesheet' href='/public/stylesheets/style.css' />
-    <script src="/public/javascripts/index.js"></script> -->
     <link rel='stylesheet' href='stylesheets/style.css' />
-    <script src="/routes/index.js"> </script>
   </head>
   <body>
     <h1></h1>
     <p>Welcome to index</p>
-    <button id="inputbutton" onClick="func()">Click me</button>
+	<button id="myButton" class="float-left submit-button" >Home</button>
+	<!-- Handles redirecting -->
+	<script type="text/javascript">
+		document.getElementById("myButton").onclick = function () {
+        location.href = "loginpage.html";
+    };
+	</script>
+</form>
   </body>
 </html>
