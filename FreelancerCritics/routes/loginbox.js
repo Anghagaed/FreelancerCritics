@@ -1,7 +1,0 @@
-function DrawBox(){
-    
-}
-
-function GoToLoginpage(){
-    
-}
