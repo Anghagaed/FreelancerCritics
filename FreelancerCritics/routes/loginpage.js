@@ -1,14 +1,71 @@
 // Handles Login Auth Shit Done by Yun
 var x = function(req, res) {
 	var username = req.body.username;
-	var userpass = req.body.userpass;
-	console.log("username: " + username + " \npassword: " + userpass);
+	var password = req.body.password;
+	console.log("username: " + username + " \npassword: " + password);
 	
 	// Do something. I currently prints hello world. U can redirect to loginpage or any other page base on conditions 
 	// which is base on database
 	// aka shit done by yun.
-	res.send("hello world");
-	//res.redirect('loginpage.html');
-}
 
+	// create database connection
+    var mysql = require('mysql');
+    var con = mysql.createConnection({
+  		host: "localhost",
+  		user: "root",
+  		password: "CSE120Project"
+	});
+
+	// connect to database
+	con.connect(function(err) {
+		if (err) throw err;		// throw error when necessary
+		console.log("connected!")
+		// run query
+		con.query("USE app_db;", function (err, result) {
+	    	if (err) throw err;
+	    	console.log("using app_db");
+	  	});
+	  	var loginSuccess = false;
+	  	con.query("SELECT ID,email,ciphertext FROM User WHERE username = ?", [username], function (err, result) {
+	  		// check for errors
+	  		if(err) throw err;	// throw error when necessary
+	  		// row not found case
+	  		if(result.length == 0) {
+	  			console.log("username not found");
+	  			return;
+	  		}
+	  		console.log("username found");
+	  		var CryptoJS = require("crypto-js");
+	  		var ID = result[0].ID;
+	  		var email = result[0].email;
+	  		var ciphertext_db = result[0].ciphertext;
+	  		var bytes = CryptoJS.AES.decrypt(ciphertext_db, password);
+	  		var plaintext_db = bytes.toString(CryptoJS.enc.Utf8);
+			var message = username+ID+email+password;
+			// console.log("Ciphered text:\t" + ciphertext_db);
+			// console.log("Deciphered text:\t" + plaintext_db);
+			if(plaintext_db == message) {
+				console.log("Login is successful");
+				loginSuccess = true;
+			}
+			else {
+				console.log("Login is unsuccessful");
+			}
+			console.log("Finished running");
+	  	});
+	  	// close connection
+		con.end(function(err) {
+			if (err) throw err;
+			console.log("successfully closed");
+		});
+		//console.log("success = " + loginSuccess);
+		// act depending on login success
+		if(loginSuccess == true) {
+			res.redirect('redirect.html');
+		}
+		else {
+			res.redirect('loginpage.html');
+		}
+	});
+}
 module.exports = x;
