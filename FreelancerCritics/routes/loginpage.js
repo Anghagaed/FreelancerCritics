@@ -15,7 +15,6 @@ var x = function(req, res) {
   		user: "root",
   		password: "CSE120Project"
 	});
-
 	// connect to database
 	con.connect(function(err) {
 		if (err) throw err;		// throw error when necessary
@@ -32,6 +31,8 @@ var x = function(req, res) {
 	  		// row not found case
 	  		if(result.length == 0) {
 	  			console.log("username not found");
+	  			console.log("redirecting to loginpage.html");
+				res.redirect('loginpage.html');
 	  			return;
 	  		}
 	  		console.log("username found");
@@ -52,6 +53,14 @@ var x = function(req, res) {
 				console.log("Login is unsuccessful");
 			}
 			console.log("Finished running");
+			if(loginSuccess == true) {
+				console.log("redirecting to redirect.html");
+				res.redirect('redirect.html');
+			}
+			else {
+				console.log("redirecting to loginpage.html");
+				res.redirect('loginpage.html');
+			}
 	  	});
 	  	// close connection
 		con.end(function(err) {
@@ -60,12 +69,12 @@ var x = function(req, res) {
 		});
 		//console.log("success = " + loginSuccess);
 		// act depending on login success
-		if(loginSuccess == true) {
-			res.redirect('redirect.html');
-		}
-		else {
-			res.redirect('loginpage.html');
-		}
+		// if(loginSuccess == true) {
+		// 	res.redirect('redirect.html');
+		// }
+		// else {
+		// 	res.redirect('loginpage.html');
+		// }
 	});
 }
 module.exports = x;
