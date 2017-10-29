@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <!--<head>
     <title>index</title>
     <link rel='stylesheet' href='stylesheets/style.css' />
   </head>
@@ -8,12 +8,56 @@
     <h1></h1>
     <p>Welcome to index</p>
 	<button id="myButton" class="float-left submit-button" >Home</button>
-	<!-- Handles redirecting -->
+	 Handles redirecting 
 	<script type="text/javascript">
 		document.getElementById("myButton").onclick = function () {
         location.href = "loginpage.html";
     };
 	</script>
 </form>
+  </body>
+-->
+  <head>
+    <!-- Title, Specifications, and Imports -->
+    <title>FreelancerCritics: A Freelancer Review Site</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!-- Auto collapse button when the page is too small -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <!-- Home page brand -->
+          <a class="navbar-brand" href="/">FreelancerCritics</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <!-- Login and Sign up -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Under-construction search function -->
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
+    </div>
   </body>
 </html>
