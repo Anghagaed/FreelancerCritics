@@ -5,6 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Login was successful. Will edit this page more</h1>
+    <h1>Login was successful. Will be redirected in 5 seconds.</h1>
+    <script>
+        var timer = setTimeout(function() {
+            window.location='http://localhost:4000/profilepage.html'
+        }, 5000);
+    </script>
   </body>
 </html>
+<!--Source for redirecting : https://stackoverflow.com/questions/3292038/redirect-website-after-certain-amount-of-time-->
