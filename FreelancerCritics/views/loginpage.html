@@ -41,13 +41,17 @@
           <a class="navbar-brand" href="/">FreelancerCritics</a>
         </div>
         <div class="collapse navbar-collapse">
-          <!-- Insert navigation components here -->
+          <!-- Login and Sign up -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          </ul>
         </div>
       </div>
     </nav>
     <!-- Login component -->
     <p>For testing, use username: billydoe1 password: taco123</p>
-    <form id='login' method="post" action="login_verification" name="login">
+    <form id='login' method="post" action="login_authentication" name="login">
       Username:<input type="text" id='username' name="username"> <br>
       Password:<input type="text" id='password' name="password"> <br> <br>
       <input type='submit' value='Login'>

@@ -13,26 +13,22 @@ app.use(express.static('public'));
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(urlencodedParser);
 
-// Start
-var start = require('./routes/index');
-// Login Function
-var loginAuth = require('./routes/loginpage');
+// Start at the router
+var router = require('./routes/router');
+app.use('/', router);
 
-// Handles Post Methods for Login. Not sure how to delegate this to another file
-app.post('/login_verification', function (req, res) {
-	loginAuth(req, res);
-})
-
-// Handles Index
-app.use('/', start);
-
-// Start App
+// Start server
 var server = app.listen(4000, function () {
-   var host = server.address().address
-   var port = server.address().port
-   console.log("FreelancerCritics app listening at http://%s:%s", host, port)
-
-})
+	// :: is a IPv6 literals and should be surrounded by []
+    // Source: https://stackoverflow.com/questions/33853695/node-js-server-address-address-returns
+    var host = server.address().address;
+    var port = server.address().port;
+    // check whether server address is a IPv6 literal
+    if(host == "::")
+    	console.log("FreelancerCritics app listening at http://[%s]:%s", host, port);
+    else
+    	console.log("FreelancerCritics app listening at http://%s:%s", host, port);
+});
 
 // Export for bin/www
 module.exports = app;

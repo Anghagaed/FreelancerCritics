@@ -1,12 +1,8 @@
-// Handles Login Auth Shit Done by Yun
-var x = function(req, res) {
+// Handles loging authentication
+var loginAuthentication = function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("username: " + username + " \npassword: " + password);
-	
-	// Do something. I currently prints hello world. U can redirect to loginpage or any other page base on conditions 
-	// which is base on database
-	// aka shit done by yun.
 
 	// create database connection
     var mysql = require('mysql');
@@ -67,14 +63,6 @@ var x = function(req, res) {
 			if (err) throw err;
 			console.log("successfully closed");
 		});
-		//console.log("success = " + loginSuccess);
-		// act depending on login success
-		// if(loginSuccess == true) {
-		// 	res.redirect('redirect.html');
-		// }
-		// else {
-		// 	res.redirect('loginpage.html');
-		// }
 	});
 }
-module.exports = x;
+module.exports = loginAuthentication;
