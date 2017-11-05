@@ -1,25 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <!--<head>
-    <title>index</title>
-    <link rel='stylesheet' href='stylesheets/style.css' />
-  </head>
-  <body>
-    <h1></h1>
-    <p>Welcome to index</p>
-	<button id="myButton" class="float-left submit-button" >Home</button>
-	 Handles redirecting 
-	<script type="text/javascript">
-		document.getElementById("myButton").onclick = function () {
-        location.href = "loginpage.html";
-    };
-	</script>
-</form>
-  </body>
--->
   <head>
     <!-- Title, Specifications, and Imports -->
-    <title>FreelancerCritics: A Freelancer Review Site</title>
+    <title>Profile Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -42,23 +25,25 @@
           <a class="navbar-brand" href="/">FreelancerCritics</a>
         </div>
         <div class="collapse navbar-collapse">
-          <!-- Login, Sign up, and Profile -->
+          <!-- Logout : Redirects to loginpage-->
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	    <li><a href="profilepage.html"><span class="glyphicon glyphicon-star-empty"></span> Profile</a></li>
-	  </ul>
+            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
         </div>
       </div>
     </nav>
-    <!-- Under-construction search function -->
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search">
-      <div class="input-group-btn">
-        <button class="btn btn-default" type="submit">
-          <i class="glyphicon glyphicon-search"></i>
-        </button>
-      </div>
+	<h3>Username: billydoe1</h3>
+	<h3> Current Bio:</h3>
+	<p>I make a lot of cool things with tools, paint, glass, or wood. Come check out my page. Feel free to contact me for business opportunities.</p>
+
+	<h3>Review History</h3>
+	<p>October 31, 2017|Jill's Bakery|the bread was soggy</p>
+	<p>July 15, 2016| Mark's Woodshop|awesome chairs but hate the desks</p>
+	<h3>Write Review</h3>
+
+    <!--Profile edit button -->
+    <div class="container">
+  	<a href="edit.html" class="btn btn-info" role="button">Edit</a>
     </div>
   </body>
 </html>

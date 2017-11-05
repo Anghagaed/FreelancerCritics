@@ -10,29 +10,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <!-- Navigation bar -->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <!-- Auto collapse button when the page is too small -->
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <!-- Home page brand -->
-          <a class="navbar-brand" href="/">FreelancerCritics</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <!-- Login and Sign up -->
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <h1>Login is successful. This page will be edited soon.</h1>
+    <h1>Login was successful. Will be redirected in 5 seconds.</h1>
+    <script>
+        var timer = setTimeout(function() {
+            window.location='http://localhost:4000/profilepage.html'
+        }, 5000);
+    </script>
   </body>
 </html>
+<!--Source for redirecting : https://stackoverflow.com/questions/3292038/redirect-website-after-certain-amount-of-time-->
