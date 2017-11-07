@@ -5,6 +5,7 @@ var router = express.Router();
 
 // Login Function
 var loginAuth = require('./loginpage');
+var signupConfirm = require('./signuppage');
 
 // GET home page.
 router.get('/', function(req, res) {
@@ -16,6 +17,11 @@ router.get('/', function(req, res) {
 // Detects login verification
 router.post('/login_authentication', function (req, res) {
 	loginAuth(req, res);
+});
+
+// Detects signup confirmation
+router.post('/signup_confirmation', function (req, res) {
+	signupConfirm(req, res);
 });
 
 module.exports = router;

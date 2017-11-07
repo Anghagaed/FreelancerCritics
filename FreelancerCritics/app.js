@@ -13,9 +13,9 @@ app.use(express.static('public'));
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(urlencodedParser);
 
-// Start at the router
-var router = require('./routes/router');
-app.use('/', router);
+// Start at the server
+var server = require('./routes/server');
+app.use('/', server);
 
 // Start server
 var server = app.listen(4000, function () {
