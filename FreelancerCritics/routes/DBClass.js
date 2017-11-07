@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-class DB {
+class mySQLDB {
 	// If value not passed, get defaulted
 	// If value is passed, uses those values
     constructor (host, user, password) {
@@ -50,11 +50,12 @@ class DB {
 
 // Examples on how it works
 /*
-const DBCon = new DB(); // or const DBCon = new DB(...);
+const DBCon = new mySQLDB(); // or const DBCon = new mySQLDB(...);
 DBCon.OpenConnection();
 DBCon.Query("SELECT ID,email,ciphertext FROM app_db.User", function(err, result) {
 	console.log(result);
 });
 DBCon.CloseConnection();
 */
-module.export = DB; 
+
+module.exports = mySQLDB;
