@@ -1,4 +1,7 @@
 var mysql = require('mysql');
+var cb_default = function(err) {
+	if (err) throw err;
+}
 class mySQLDB {
 	// If value not passed, get defaulted
 	// If value is passed, uses those values
@@ -35,16 +38,25 @@ class mySQLDB {
 		console.log(this.con.state);
 	}
 	// Opens Connection
-	OpenConnection() {
-		this.con.connect();
+	OpenConnection(cb) {
+		if(cb == undefined) {
+			cb = cb_default;
+		}
+		this.con.connect(cb);
 	}
 	// Close Connection
-	CloseConnection() {
-		this.con.end();
+	CloseConnection(cb) {
+		if(cb == undefined) {
+			cb = cb_default;
+		}
+		this.con.end(cb);
 	}
 	// Execute query q with callback function cb
 	Query(q, cb) {
 		this.con.query(q, cb);
+	}
+	PrepQuery(q, pa, cb) {
+		this.con.query(q, pa, cb);
 	}
 }
 

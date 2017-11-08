@@ -8,7 +8,7 @@ var x = new DB();
 
 // Use as needed
 x.OpenConnection();
-x.Query("SELECT ID,email,ciphertext FROM app_db.User", function(err, result) {
+x.Query("SELECT * FROM app_db.User", function(err, result) {
 	console.log(result);
 });
 x.CloseConnection();
