@@ -60,6 +60,7 @@ var loginAuthentication = function(req, res) {
 		if (err) throw err;
 		console.log("successfully closed");
 	});
+
 	// con.connect(function(err) {
 	// 	if (err) throw err;		// throw error when necessary
 	// 	console.log("connected!")
@@ -112,5 +113,8 @@ var loginAuthentication = function(req, res) {
 	// 		console.log("successfully closed");
 	// 	});
 	// });
+}
+var generateCookie = function() {
+	
 }
 module.exports = loginAuthentication;

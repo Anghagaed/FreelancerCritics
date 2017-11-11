@@ -2,13 +2,14 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var app = express();
 
 // Serving static files
 app.use(express.static('views'));
 app.use(express.static('routes'));
 app.use(express.static('public'));
-
+app.use(cookieParser());
 // Use for post body parsing to work
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(urlencodedParser);
