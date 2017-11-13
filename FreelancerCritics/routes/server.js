@@ -7,6 +7,9 @@ var router = express.Router();
 var loginAuth = require('./loginpage');
 var signupConfirm = require('./signuppage');
 
+//Edit Function
+var editAuth = require('./edit');
+
 // GET home page.
 router.get('/', function(req, res) {
 	console.log("Yun is a cookie: ");
@@ -24,6 +27,11 @@ router.post('/login_authentication', function (req, res) {
 // Detects signup confirmation
 router.post('/signup_confirmation', function (req, res) {
 	signupConfirm(req, res);
+});
+
+//Detects edit confirmation
+router.post('/edit_authentication', function (req, res) {
+	editAuth(req, res);
 });
 
 module.exports = router;
