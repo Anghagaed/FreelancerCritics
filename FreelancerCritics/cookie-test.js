@@ -1,41 +1,39 @@
 var cookie = require('cookie');
-var escapeHtml = require('escape-html');
 var express = require('express');
 var url = require('url');
+var escapeHtml = require('escape-html'); // used for html script
 var app = express();
+
+var userSession = require('./routes/usersession.js');
+var session = new userSession();
 
 app.get('/', function(req, res){
   // Parse the query string 
   var query = url.parse(req.url, true, true).query;
- 
   if (query && query.name) {
     // Set a new cookie with the name 
-    res.setHeader('Set-Cookie', cookie.serialize('name', String(query.name), {
-      httpOnly: true,
-      maxAge: 60 * 60 * 24 * 7 // 1 week 
-    }));
- 
+ 	session.StartSession(String(query.name),res);
     // Redirect back after setting cookie 
     res.statusCode = 302;
     res.setHeader('Location', req.headers.referer || '/');
     res.end();
     return;
   }
- 
-  // Parse the cookies on the request 
-  var cookies = cookie.parse(req.headers.cookie || '');
- 
   // Get the visitor name set in the cookie 
-  var name = cookies.name;
+  var name = session.FindSession(req);
  
   res.setHeader('Content-Type', 'text/html; charset=UTF-8');
  
   if (name) {
+  	console.log("found name: " + name);
+  	// page for returning user
     res.write('<p>Welcome back, <b>' + escapeHtml(name) + '</b>!</p>');
   } else {
+  	console.log("name not found");
+  	// page for new user
     res.write('<p>Hello, new visitor!</p>');
   }
- 
+  // button
   res.write('<form method="GET">');
   res.write('<input placeholder="enter your name" name="name"> <input type="submit" value="Set Name">');
   res.end('</form');

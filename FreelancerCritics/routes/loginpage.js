@@ -4,7 +4,11 @@ var loginAuthentication = function(req, res) {
 	var password = req.body.password;
 	console.log("username: " + username + " \npassword: " + password);
 
+	// Handles db operations
 	var DB = require('./DBClass.js');
+	// Handles user sessions
+	//var userSession = require('./usersession.js');
+	//var session = new userSession();
 
 	// Make the new class
 	var con = new DB();
@@ -39,7 +43,10 @@ var loginAuthentication = function(req, res) {
 		// console.log("Ciphered text:\t" + ciphertext_db);
 		// console.log("Deciphered text:\t" + plaintext_db);
 		if(plaintext_db == message) {
-			console.log("Login is successful");
+			console.log("Login is successful."); //Generating a user session...");
+			// session.StartSession(username, res);
+			// if(session.FindSession(req) === username)
+			// 	console.log("User session is successfully generated")
 			loginSuccess = true;
 		}
 		else {
