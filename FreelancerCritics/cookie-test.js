@@ -1,4 +1,4 @@
-var cookie = require('cookie');
+//var cookie = require('cookie');
 var express = require('express');
 var url = require('url');
 var escapeHtml = require('escape-html'); // used for html script
@@ -12,11 +12,11 @@ app.get('/', function(req, res){
   var query = url.parse(req.url, true, true).query;
   if (query && query.name) {
     // Set a new cookie with the name 
- 	session.StartSession(String(query.name),res);
+ 	session.StartSession(String(query.name),res, req);
     // Redirect back after setting cookie 
-    res.statusCode = 302;
-    res.setHeader('Location', req.headers.referer || '/');
-    res.end();
+    // res.statusCode = 302;
+    // res.setHeader('Location', req.headers.referer || '/');
+    //res.end();
     return;
   }
   // Get the visitor name set in the cookie 
@@ -40,7 +40,7 @@ app.get('/', function(req, res){
 });
 
 // Start server
-var server = app.listen(4000, function () {
+var server = app.listen(5000, function () {
   // :: is a IPv6 literals and should be surrounded by []
     // Source: https://stackoverflow.com/questions/33853695/node-js-server-address-address-returns
     var host = server.address().address;

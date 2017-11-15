@@ -28,6 +28,36 @@
   </head>
   <body>
     <!-- Navigation bar -->
+<!DOCTYPE html>
+<html>
+  <!--<head>
+    <title>index</title>
+    <link rel='stylesheet' href='stylesheets/style.css' />
+  </head>
+  <body>
+    <h1></h1>
+    <p>Welcome to index</p>
+	<button id="myButton" class="float-left submit-button" >Home</button>
+	 Handles redirecting 
+	<script type="text/javascript">
+		document.getElementById("myButton").onclick = function () {
+        location.href = "loginpage.html";
+    };
+	</script>
+</form>
+  </body>
+-->
+  <head>
+    <!-- Title, Specifications, and Imports -->
+    <title>FreelancerCritics: A Freelancer Review Site</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation bar -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -50,7 +80,7 @@
         </div>
       </div>
     </nav>
-
+<!--
 <h1>Update Bio</h1>
 <div class="input-group">
       <input type="text" class="form-control" placeholder="I am a farmer by trade but I also do a lot of woodworking. I can make you beautiful carvings at a price.">
@@ -58,27 +88,32 @@
         <button class="btn btn-default" type="submit">Update</button>
       </div>
  </div>
-
+-->
 <p></p>
  
+<!--Clicking update changes password & corresponding ciphertext in database-->
+<!--Clicking cancel makes no changes & redirects to the profile page-->
 <h1>Change Password</h1>
- <form id='changepass' method="post" action="password_change">
-      Current Password:<input type="text" id='acurpass' > <br>
-      New Password:<input type="text" id='anewpass'> <br>
-      Confirm New Password: <input type="text" id='bnewpass'> <br>
+<!--
+ <form id='changepass' method="post" action="edit_confirm" name="changePass">
+      Current Password:<input type="text" id='cpass' name="cpass"> <br>
+      New Password:<input type="password" id='apass' name="apass"> <br>
+      Confirm New Password: <input type="password" id='bpass' name="bpass"> <br>
  <br>
-      <input type='submit' value='Update'>
+      <script type ="text/javascript" src="edit.js"></script>
+      <input type='button' value='Update' onclick="changePassword('cpass','apass','bpass')"/>
+      <input type='button' value='Cancel' style="color:red" onclick="window.location.href ='profilepage.html'"/>
  </form>
-  
+-->
+<form id='changepass' method="post" action="edit_authentication" name="changepass">
+      Current Password:<input type="text" id='currpass' name="currpass"> <br>
+      New Password:<input type="password" id='apass' name="apass"> <br>
+      Confirm New Password: <input type="password" id='bpass' name="bpass"><br><br>
+      <input type='submit' value='Update'>
+      <input type='button' value='Cancel' style="color:red" onclick="window.location.href ='profilepage.html'"/>
+    </form>
+ 
 <p></p>
-<p></p>
-
-
-
-<!--On submit database will be updated and will redirect to profile page-->
-    <!--Profile submit button -->
-    <div class="container">
-  	<a href="profilepage.html" class="btn btn-info" role="button">Return to Profile</a>
-    </div>
+    
   </body>
 </html>

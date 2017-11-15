@@ -1,15 +1,19 @@
 // Handles loging authentication
 var loginAuthentication = function(req, res) {
+	// Handles user sessions
+	var userSession = require('./usersession.js');
+	var session = new userSession();
+	// check if the cookie already exists
+	if(session.FindSession(req)) {
+		console.log("redirecting to redirect.html");
+		res.redirect('redirect.html');
+		return;
+	}
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("username: " + username + " \npassword: " + password);
-
 	// Handles db operations
 	var DB = require('./DBClass.js');
-	// Handles user sessions
-	//var userSession = require('./usersession.js');
-	//var session = new userSession();
-
 	// Make the new class
 	var con = new DB();
 	// create database connection
@@ -21,7 +25,6 @@ var loginAuthentication = function(req, res) {
     	if (err) throw err;
     	console.log("using app_db");
   	});
-  	var loginSuccess = false;
   	con.PrepQuery("SELECT ID,email,ciphertext FROM User WHERE username = ?", [username], function (err, result) {
   		// check for errors
   		if(err) throw err;	// throw error when necessary
@@ -40,88 +43,23 @@ var loginAuthentication = function(req, res) {
   		var bytes = CryptoJS.AES.decrypt(ciphertext_db, password);
   		var plaintext_db = bytes.toString(CryptoJS.enc.Utf8);
 		var message = username+ID+email+password;
-		// console.log("Ciphered text:\t" + ciphertext_db);
-		// console.log("Deciphered text:\t" + plaintext_db);
 		if(plaintext_db == message) {
-			console.log("Login is successful."); //Generating a user session...");
-			// session.StartSession(username, res);
-			// if(session.FindSession(req) === username)
-			// 	console.log("User session is successfully generated")
-			loginSuccess = true;
+			console.log("Login is successful. Generating a user session for " + username);
+			session.StartSession(String(username), res, req);
+			// return and run again for redirect
+			return;
 		}
 		else {
 			console.log("Login is unsuccessful");
-		}
-		console.log("Finished running");
-		if(loginSuccess == true) {
-			console.log("redirecting to redirect.html");
-			res.redirect('redirect.html');
-		}
-		else {
 			console.log("redirecting to loginpage.html");
 			res.redirect('loginpage.html');
 		}
+		console.log("Finished running");
 	});
 	
 	con.CloseConnection(function(err) {
 		if (err) throw err;
 		console.log("successfully closed");
 	});
-
-	// con.connect(function(err) {
-	// 	if (err) throw err;		// throw error when necessary
-	// 	console.log("connected!")
-	// 	// run query
-	// 	con.query("USE app_db;", function (err, result) {
-	//     	if (err) throw err;
-	//     	console.log("using app_db");
-	//   	});
-	  	// var loginSuccess = false;
-	  	// con.query("SELECT ID,email,ciphertext FROM User WHERE username = ?", [username], function (err, result) {
-	  	// 	// check for errors
-	  	// 	if(err) throw err;	// throw error when necessary
-	  	// 	// row not found case
-	  	// 	if(result.length == 0) {
-	  	// 		console.log("username not found");
-	  	// 		console.log("redirecting to loginpage.html");
-				// res.redirect('loginpage.html');
-	  	// 		return;
-	  	// 	}
-	  // 		console.log("username found");
-	  // 		var CryptoJS = require("crypto-js");
-	  // 		var ID = result[0].ID;
-	  // 		var email = result[0].email;
-	  // 		var ciphertext_db = result[0].ciphertext;
-	  // 		var bytes = CryptoJS.AES.decrypt(ciphertext_db, password);
-	  // 		var plaintext_db = bytes.toString(CryptoJS.enc.Utf8);
-			// var message = username+ID+email+password;
-			// // console.log("Ciphered text:\t" + ciphertext_db);
-			// // console.log("Deciphered text:\t" + plaintext_db);
-			// if(plaintext_db == message) {
-			// 	console.log("Login is successful");
-			// 	loginSuccess = true;
-			// }
-			// else {
-			// 	console.log("Login is unsuccessful");
-			// }
-			// console.log("Finished running");
-			// if(loginSuccess == true) {
-			// 	console.log("redirecting to redirect.html");
-			// 	res.redirect('redirect.html');
-			// }
-			// else {
-			// 	console.log("redirecting to loginpage.html");
-			// 	res.redirect('loginpage.html');
-			// }
-	//   	});
-	//   	// close connection
-	// 	con.end(function(err) {
-	// 		if (err) throw err;
-	// 		console.log("successfully closed");
-	// 	});
-	// });
-}
-var generateCookie = function() {
-	
 }
 module.exports = loginAuthentication;
