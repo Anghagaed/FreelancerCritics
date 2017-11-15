@@ -20,8 +20,6 @@ class userSession {
       res.statusCode = 302;
       res.setHeader('Location', req.headers.referer || '/');
       console.log("Successfully generated cookie");
-      this.FindSession(req); // sanity check
-      res.end();
     }
     // Checks whether a user exists or not
     // Returns the username if found or "" if not found

@@ -46,13 +46,15 @@ var loginAuthentication = function(req, res) {
 		if(plaintext_db == message) {
 			console.log("Login is successful. Generating a user session for " + username);
 			session.StartSession(String(username), res, req);
-			// return and run again for redirect
-			return;
+			console.log("redirecting to redirect.html");
+			res.redirect('redirect.html');
+			res.end();
 		}
 		else {
 			console.log("Login is unsuccessful");
 			console.log("redirecting to loginpage.html");
 			res.redirect('loginpage.html');
+			res.end();
 		}
 		console.log("Finished running");
 	});
