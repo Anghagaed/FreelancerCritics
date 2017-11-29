@@ -44,10 +44,21 @@
         <div class="collapse navbar-collapse">
           <!-- Login, Sign up, and Profile -->
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="signuppage.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	    <li><a href="profilepage.html"><span class="glyphicon glyphicon-star-empty"></span> Profile</a></li>
-	  </ul>
+            <li id="loginorlogout"></li>
+            <li id="signuporprofile"></li>
+            <script>
+              // no user detected
+              if(document.cookie == "") {
+                document.getElementById("loginorlogout").innerHTML = "<a href='loginpage.html'><span class='glyphicon glyphicon-log-in'></span> Login</a>";
+                document.getElementById("signuporprofile").innerHTML = "<a href='signuppage.html'><span class='glyphicon glyphicon-user'></span> Sign Up</a>";
+              }
+              // user detected
+              else {
+                document.getElementById("loginorlogout").innerHTML = "<a href='loginpage.html'><span class='glyphicon glyphicon-log-out'></span> Logout</a>";
+                document.getElementById("signuporprofile").innerHTML = "<a href='profilepage.html'><span class='glyphicon glyphicon-star-empty'></span> Profile</a>";
+              }
+            </script>
+	        </ul>
         </div>
       </div>
     </nav>
