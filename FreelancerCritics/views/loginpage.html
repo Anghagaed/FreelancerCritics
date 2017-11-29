@@ -1,21 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <!--<head>
-    <title>loginpage</title>
-  </head>
-  <body>
-    <h1></h1>
-    <p>Welcome to Login Page. This page css has not been setup yet. - Hang</p>
-    <p>For testing, use username: billydoe1 password: taco123</p>
-	<form id='login' method="post" action="login_verification" name="login">
-		Username:<input type="text" id='username' name="username"> <br>
-		Password:<input type="text" id='userpass' name="password"> <br> <br>
-		<input type="submit" value="Login">
-		<input type='reset' value='Reset'>
-</form>
-</form>
-  </body>
--->
   <head>
     <!-- Title, Specifications, and Imports -->
     <title>Login to FreelancerCritics</title>
@@ -43,8 +27,18 @@
         <div class="collapse navbar-collapse">
           <!-- Login and Sign up -->
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="signuppage.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li>
+              <form id='gotologin' method="get" action="gotologin" name="gotologin">
+                <span class="glyphicon glyphicon-log-in"></span><input type='submit' value='Login'>
+                <!--<a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a>-->
+              </form>
+            </li>
+            <li>
+              <form id='gotosignup' method="get" action="gotosignup" name="gotosignup">
+                <span class="glyphicon glyphicon-user"></span><input type='submit' value='Sign Up'>
+                <!--<a href="signuppage.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a>-->
+              </form>
+            </li>
           </ul>
         </div>
       </div>

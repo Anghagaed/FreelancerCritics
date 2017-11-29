@@ -14,9 +14,9 @@ app.get('/', function(req, res){
     // Set a new cookie with the name 
  	session.StartSession(String(query.name),res, req);
     // Redirect back after setting cookie 
-    // res.statusCode = 302;
-    // res.setHeader('Location', req.headers.referer || '/');
-    //res.end();
+    res.statusCode = 302;
+    res.setHeader('Location', req.headers.referer || '/');
+    res.end();
     return;
   }
   // Get the visitor name set in the cookie 

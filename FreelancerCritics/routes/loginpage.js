@@ -4,11 +4,11 @@ var loginAuthentication = function(req, res) {
 	var userSession = require('./usersession.js');
 	var session = new userSession();
 	// check if the cookie already exists
-	if(session.FindSession(req)) {
-		console.log("redirecting to redirect.html");
-		res.redirect('redirect.html');
-		return;
-	}
+	// if(session.FindSession(req)) {
+	// 	console.log("redirecting to redirect.html");
+	// 	res.redirect('redirect.html');
+	// 	return;
+	// }
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("username: " + username + " \npassword: " + password);

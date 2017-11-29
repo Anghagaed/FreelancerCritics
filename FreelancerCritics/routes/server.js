@@ -17,6 +17,18 @@ router.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+// GET login page
+router.get('/gotologin', function (req, res) {
+	console.log("GET IS CALLED");
+	res.redirect('loginpage.html')
+});
+
+// GET signup page
+router.get('/gotosignup', function (req, res) {
+	console.log("GET IS CALLED");
+	res.redirect('signuppage.html')
+});
+
 // Detects login verification
 router.post('/login_authentication', function (req, res) {
 	loginAuth(req, res);

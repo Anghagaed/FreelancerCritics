@@ -14,11 +14,12 @@ class userSession {
     StartSession (username, res, req) {
     	res.setHeader('Set-Cookie', cookie.serialize('username', String(username), {
 	      httpOnly: false,
-	      maxAge: 60 // currently lasts 1 min
+	      maxAge: 60, // currently lasts 1 min
+        Path: '/'
 	    }));
       // Redirect back after setting cookie 
-      res.statusCode = 302;
-      res.setHeader('Location', req.headers.referer || '/');
+      // res.statusCode = 302;
+      // res.setHeader('Location', req.headers.referer || '/');
       console.log("Successfully generated cookie");
     }
     // Checks whether a user exists or not
