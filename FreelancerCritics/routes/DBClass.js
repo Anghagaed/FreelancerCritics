@@ -1,7 +1,9 @@
 var mysql = require('mysql');
+
 var cb_default = function(err) {
 	if (err) throw err;
 }
+
 class mySQLDB {
 	// If value not passed, get defaulted
 	// If value is passed, uses those values

@@ -12,6 +12,9 @@ var signupConfirm = require('./signuppage');
 //Edit Function
 var editAuth = require('./edit');
 
+// Search Function
+var displaySearch = require('./search');
+
 // GET home page.
 router.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
@@ -42,6 +45,12 @@ router.post('/signup_confirmation', function (req, res) {
 //Detects edit confirmation
 router.post('/edit_authentication', function (req, res) {
 	editAuth(req, res);
+});
+
+// Detects search request
+router.post('/searchInput', function(req, res) {
+	console.log("Search GET IS CALLED");
+	displaySearch(req, res);
 });
 
 module.exports = router;
