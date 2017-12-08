@@ -54,10 +54,16 @@
               }
               // user detected
               else {
-                document.getElementById("loginorlogout").innerHTML = "<a href='loginpage.html'><span class='glyphicon glyphicon-log-out'></span> Logout</a>";
+                document.getElementById("loginorlogout").innerHTML = "<a href='loginpage.html' onclick='logout()'><span class='glyphicon glyphicon-log-out'></span> Logout</a>";
                 document.getElementById("signuporprofile").innerHTML = "<a href='profilepage.html'><span class='glyphicon glyphicon-star-empty'></span> Profile</a>";
               }
+              function logout() {
+                document.cookie.split(";").forEach(function(c) { 
+                  document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+              }
             </script>
+
 	        </ul>
         </div>
       </div>

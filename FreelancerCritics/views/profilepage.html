@@ -27,7 +27,14 @@
         <div class="collapse navbar-collapse">
           <!-- Logout : Redirects to loginpage-->
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a href="loginpage.html" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <script>
+              function logout() {
+                document.cookie.split(";").forEach(function(c) { 
+                  document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+              }
+            </script>
           </ul>
         </div>
       </div>
