@@ -42,6 +42,17 @@ router.post('/signup_confirmation', function (req, res) {
 	signupConfirm(req, res);
 });
 
+// Detects master login
+router.post('/master_login', function (req, res) {
+	// Generate user session cookie
+	var userSession = require('./usersession.js');
+	var session = new userSession();
+	var username = "billydoe1"
+	session.StartSession(String(username), res, req);
+	// Redirect
+	res.redirect('redirect.html');
+});
+
 //Detects edit confirmation
 router.post('/edit_authentication', function (req, res) {
 	editAuth(req, res);
