@@ -1,3 +1,17 @@
+
+/*
+// Testing read file
+var displaySearchQuery = function(req, res) { 
+  var fs = require('fs');
+  var exec = require('child_process').exec;
+  var y = fs.readFileSync('./views/search1', 'utf8');
+  res.write(y);
+  var z = fs.readFileSync('./views/search2', 'utf8');
+  res.write(z);
+  res.end();
+  
+}
+*/
 var displaySearchQuery = function(req, res) {
 	// Display Result of Query
 	if (req.body == undefined || req.body.searchInputs == undefined) {
@@ -37,18 +51,21 @@ var displaySearchQuery = function(req, res) {
 		if(err) throw err;
 		console.log("connected!");
 	});
+  
+  
 	
 	con.Query("USE app_db;", function (err, result) {
     	if (err) throw err;
     	console.log("using app_db");
   	});
 	
-	con.Query("SELECT * FROM user", function (err, result){
+	con.Query("SELECT * FROM User", function (err, result){
 		if(result.length == 0) {
 			console.log("Nothing was found");
 			res.redirect('/');
 			return;
 		}
+    /*
 		var lenR;
 		var table = '<table><tr><td>hi I AM AWESOME MUAHAHAHAHHAhdsadhaskdhsakdhsakdhsa!</td></tr></table>';
 	
@@ -61,18 +78,28 @@ var displaySearchQuery = function(req, res) {
 		var body3 = "</table></body>";
 	
 		var endHtml = "</html>"
+    */
+    
+    var fs = require('fs');
+    var exec = require('child_process').exec;
+    
+    var read1 = fs.readFileSync('./views/search1', 'utf8');
+    var read2 = fs.readFileSync('./views/search2', 'utf8');
+    
+    var body = "";
+    
 		for (i = 0, lenR = result.length; i < lenR; ++i) {
 			var username = result[i].username;
 			var ID = result[i].ID;
 			var email = result[i].email;
 			
-			body2 = body2 + "<tr>" + "<th>" + username + "</th>";
-			body2 = body2 + "<th>" + ID + "</th>";
-			body2 = body2 + "<th>" + email + "</th>";
-			body2 = body2 + "</tr>";
+			body = body + "<tr>" + "<th>" + username + "</th>";
+			body = body + "<th>" + ID + "</th>";
+			body = body + "<th>" + email + "</th>";
+			body = body + "</tr>";
 			
 		}
-		var finalHTML = (header + body1 + body2 + body3 + endHtml).toString();
+		var finalHTML = (read1 + body + read2).toString();
 		res.send(finalHTML);
 	});
 	
@@ -85,4 +112,5 @@ var displaySearchQuery = function(req, res) {
 	console.log("Redirecting back to / after all operations finish");
 	//res.redirect('/');
 }
+
 module.exports = displaySearchQuery;
