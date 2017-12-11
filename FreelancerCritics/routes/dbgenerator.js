@@ -26,6 +26,7 @@ con.connect(function(err) {
 							+	"username VARCHAR(20) NOT NULL UNIQUE, "
 		  					+	"email VARCHAR(254) NOT NULL, "
 		  					+	"ciphertext VARCHAR(255) NOT NULL, "
+							+  	"profileBio VARCHAR(255) NOT NULL, "			// "aboutMe"
 							+	"PRIMARY KEY (ID) "
 							+ 	");", function (err, result) {
 		if (err) throw err;
@@ -35,12 +36,14 @@ con.connect(function(err) {
 	var username = "billydoe1";
 	var password = "taco123";
 	var email = "bdoe@abc.net";
+	var profileBio = "I am happy to help customers. I make cool products.";
+
 	// encrypt
 	var CryptoJS = require("crypto-js");
 	var ciphertext = CryptoJS.AES.encrypt(username+ID+email+password, password);
 	// prepared statement
-	var query = con.query('INSERT INTO User (ID,username,email,ciphertext)'
-  								+ ' values (?, ?, ?, ?)', [ID,username,email,ciphertext.toString()], function(err, results) {
+	var query = con.query('INSERT INTO User (ID,username,email,ciphertext,profileBio)'
+  								+ ' values (?, ?, ?, ?, ?)', [ID,username,email,ciphertext.toString(), profileBio], function(err, results) {
 		if (err) throw err;
 	});
 });
