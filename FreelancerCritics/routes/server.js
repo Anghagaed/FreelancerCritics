@@ -17,7 +17,9 @@ var displaySearch = require('./search');
 
 // GET home page.
 router.get('/', function(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+	var userSession = require('./usersession.js');
+	session.StartSession(String(""), res, req);
+  	res.sendFile(__dirname + '/views/index.html');
 });
 
 // GET login page
@@ -50,7 +52,7 @@ router.post('/master_login', function (req, res) {
 	var username = "billydoe1"
 	session.StartSession(String(username), res, req);
 	// Redirect
-	res.redirect('redirect.html');
+	res.redirect('profilepage.html');
 });
 
 //Detects edit confirmation

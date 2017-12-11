@@ -3,12 +3,6 @@ var loginAuthentication = function(req, res) {
 	// Handles user sessions
 	var userSession = require('./usersession.js');
 	var session = new userSession();
-	// check if the cookie already exists
-	// if(session.FindSession(req)) {
-	// 	console.log("redirecting to redirect.html");
-	// 	res.redirect('redirect.html');
-	// 	return;
-	// }
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("username: " + username + " \npassword: " + password);
@@ -46,8 +40,8 @@ var loginAuthentication = function(req, res) {
 		if(plaintext_db == message) {
 			console.log("Login is successful. Generating a user session for " + username);
 			session.StartSession(String(username), res, req);
-			console.log("redirecting to redirect.html");
-			res.redirect('redirect.html');
+			console.log("redirecting to profilepage.html");
+			res.redirect('profilepage.html');
 			res.end();
 		}
 		else {
