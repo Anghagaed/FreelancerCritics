@@ -60,46 +60,68 @@ var displaySearchQuery = function(req, res) {
     	console.log("using app_db");
   	});
 	
-	con.Query("SELECT * FROM User, Profile WHERE User.ID=Profile.ID", function (err, result){
+	
+	con.PrepQuery("SELECT * FROM User, Profile WHERE User.ID=Profile.ID AND Profile.name LIKE ? ", '%' + queryString + '%', function (err, result){
 		
+		if (err) console.log("THERE IS ERROR");
 
-		if(result.length == 0) {
-			console.log("Nothing was found");
+		if(result == undefined) {
+			console.log("Invalid Query");
 			res.redirect('/');
 			return;
 		}
     
     	var fs = require('fs');
     	var exec = require('child_process').exec;
-    
-   	 	var read1 = fs.readFileSync('./views/search1', 'utf8');
-    	var read2 = fs.readFileSync('./views/search2', 'utf8');
-    
-    	var formheader = "<form id='searchBar' action='/redirectProfile' method='POST' name='redirectProfile'>";
-    
-    	var hiddenValue0 = "<input type='hidden' id='Username' name='Username= value='";
-    	var hiddenValue1 = "";
-    	var hiddenValue2 = "'>";
 
-    	var submitValue0 = "<input type='submit' value='";
-    	var submitValue1 = "";
-    	var submitValue2 = "'>";
+    	if (result.length == 0) {
+    		console.log("FOUND NOTHING");
+    		var read3 = fs.readFileSync('./views/search3', 'utf8');
 
-    	var body = "";
-    
-		for (i = 0, lenR = result.length; i < lenR; ++i) {
-			console.log(result[i]);
-			//hiddenValue1 = result[i].
+    		res.send(read3);
+    	}
+    	else {
+    		console.log("FOUND SOMETHING");
+	   	 	var read1 = fs.readFileSync('./views/search1', 'utf8');
+	    	var read2 = fs.readFileSync('./views/search2', 'utf8');
+
+	    	var formheader = "<tr><th><form id='searchBar' action='/redirectProfile' method='POST' name='redirectProfile'>";
+	    	var formEnder = "</form></th>";
+
+	    	var hiddenValue0 = "<input type='hidden' id='ID' name='ID' value='";
+	    	var hiddenValue1 = "";
+	    	var hiddenValue2 = "'>";
+
+	    	var submitValue0 = "<input type='submit' value='";
+	    	var submitValue1 = "";
+	    	var submitValue2 = "'>";
+
+	    	var body = "";
+	    
+			for (i = 0, lenR = result.length; i < lenR; ++i) {
+				console.log(result[i]);
+				hiddenValue1 = result[i].ID.toString();
+				submitValue1 = result[i].name.toString();
+				var skills = result[i].skills.toString();
+
+				body = body + formheader;
+				body = body + hiddenValue0 + hiddenValue1 + hiddenValue2;
+				body = body + submitValue0 + submitValue1 + submitValue2;
+				body = body + formEnder;
+
+				body = body + "<th>" + skills + "</th>";
+			}
+			var finalHTML = (read1 + body + read2).toString();
+			res.send(finalHTML);
 		}
-		var finalHTML = (read1 + body + read2).toString();
-		res.send(finalHTML);
+
+		// close database connection
+		con.CloseConnection(function(err) {
+			if (err) throw err;
+			console.log("successfully closed");
+		});
 	});
 	
-	// close database connection
-	con.CloseConnection(function(err) {
-		if (err) throw err;
-		console.log("successfully closed");
-	});
 
 	console.log("Redirecting back to / after all operations finish");
 	//res.redirect('/');
