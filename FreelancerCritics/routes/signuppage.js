@@ -2,7 +2,13 @@
 var signup_confirmation = function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
+	var name = req.body.name;
 	var email = req.body.email;
+	var profileContent = "This is profile.";
+	var phone = "1112223333";
+	var education = "Some Education";
+	var skills = "Some skills";
+
 	console.log("username: " + username + " \npassword: " + password + "\nemail: " + email);
 	// create database connection
     var mysql = require('mysql');
@@ -44,6 +50,10 @@ var signup_confirmation = function(req, res) {
 				// prepared statement
 				var query = con.query('INSERT INTO User (ID,username,email,ciphertext)'
 			  								+ ' values (?, ?, ?, ?)', [ID,username,email,ciphertext.toString()], function(err, results) {
+					if (err) throw err;
+				});
+				var query = con.query('INSERT INTO Profile (ID,name,profileContent,phone,education,skills)'
+  								+ ' values (?, ?, ?, ?, ?, ?)', [ID,name,profileContent,phone,education,skills], function(err, results) {
 					if (err) throw err;
 				});
 		  		// account is successfully created

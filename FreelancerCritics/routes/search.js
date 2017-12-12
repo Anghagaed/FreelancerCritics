@@ -41,7 +41,7 @@ var displaySearchQuery = function(req, res) {
 	for (i = 0, len = queryArray.length; i < len; ++i) {
 		console.log("queryArray[" + i + "] is " + queryArray[i]);
 	}
-  /*
+ 
 	// Handles db operations
 	var DB = require('./DBClass.js');
 	// Make the new class
@@ -60,31 +60,36 @@ var displaySearchQuery = function(req, res) {
     	console.log("using app_db");
   	});
 	
-	con.Query("SELECT * FROM User", function (err, result){
+	con.Query("SELECT * FROM User, Profile WHERE User.ID=Profile.ID", function (err, result){
+		
+
 		if(result.length == 0) {
 			console.log("Nothing was found");
 			res.redirect('/');
 			return;
 		}
     
-    var fs = require('fs');
-    var exec = require('child_process').exec;
+    	var fs = require('fs');
+    	var exec = require('child_process').exec;
     
-    var read1 = fs.readFileSync('./views/search1', 'utf8');
-    var read2 = fs.readFileSync('./views/search2', 'utf8');
+   	 	var read1 = fs.readFileSync('./views/search1', 'utf8');
+    	var read2 = fs.readFileSync('./views/search2', 'utf8');
     
-    var body = "";
+    	var formheader = "<form id='searchBar' action='/redirectProfile' method='POST' name='redirectProfile'>";
+    
+    	var hiddenValue0 = "<input type='hidden' id='Username' name='Username= value='";
+    	var hiddenValue1 = "";
+    	var hiddenValue2 = "'>";
+
+    	var submitValue0 = "<input type='submit' value='";
+    	var submitValue1 = "";
+    	var submitValue2 = "'>";
+
+    	var body = "";
     
 		for (i = 0, lenR = result.length; i < lenR; ++i) {
-			var username = result[i].username;
-			var ID = result[i].ID;
-			var email = result[i].email;
-			
-			body = body + "<tr>" + "<th>" + username + "</th>";
-			body = body + "<th>" + ID + "</th>";
-			body = body + "<th>" + email + "</th>";
-			body = body + "</tr>";
-			
+			console.log(result[i]);
+			//hiddenValue1 = result[i].
 		}
 		var finalHTML = (read1 + body + read2).toString();
 		res.send(finalHTML);
@@ -95,7 +100,7 @@ var displaySearchQuery = function(req, res) {
 		if (err) throw err;
 		console.log("successfully closed");
 	});
-  */
+
 	console.log("Redirecting back to / after all operations finish");
 	//res.redirect('/');
 }

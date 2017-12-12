@@ -26,24 +26,43 @@ con.connect(function(err) {
 							+	"username VARCHAR(20) NOT NULL UNIQUE, "
 		  					+	"email VARCHAR(254) NOT NULL, "
 		  					+	"ciphertext VARCHAR(255) NOT NULL, "
-							+  	"profileBio VARCHAR(255) NOT NULL, "			// "aboutMe"
 							+	"PRIMARY KEY (ID) "
 							+ 	");", function (err, result) {
 		if (err) throw err;
 	});
-	// insert a sample user into table
+	con.query("CREATE TABLE Profile(ID INT NOT NULL UNIQUE, "
+								+  "name VARCHAR(255) NOT NULL, "
+								+  "profileContent VARCHAR(255) NOT NULL, "			// "aboutMe"
+								+  "phone VARCHAR(10) NOT NULL, "					// "phoneNumber"(xxxxxxxxxx format)
+								+  "education VARCHAR(255) NOT NULL, "				// education level
+								+  "skills VARCHAR(255) NOT NULL, "					// "specialization" (variable type is to be determined)
+								+  "PRIMARY KEY(ID)"
+								+  ");", function (err, result) {
+  	if (err) throw err;
+    console.log("Table Profile is created");
+  });
+	// user
 	var ID = 1;
 	var username = "billydoe1";
 	var password = "taco123";
 	var email = "bdoe@abc.net";
-	var profileBio = "I am happy to help customers. I make cool products.";
+	// profile
+	var name = "Billy Doe";
+	var profileContent = "This is profile.";
+	var phone = "1112223333";
+	var education = "Some Education";
+	var skills = "Some skills";
 
 	// encrypt
 	var CryptoJS = require("crypto-js");
 	var ciphertext = CryptoJS.AES.encrypt(username+ID+email+password, password);
 	// prepared statement
-	var query = con.query('INSERT INTO User (ID,username,email,ciphertext,profileBio)'
-  								+ ' values (?, ?, ?, ?, ?)', [ID,username,email,ciphertext.toString(), profileBio], function(err, results) {
+	var query = con.query('INSERT INTO User (ID,username,email,ciphertext)'
+  								+ ' values (?, ?, ?, ?)', [ID,username,email,ciphertext.toString()], function(err, results) {
+		if (err) throw err;
+	});
+	var query = con.query('INSERT INTO Profile (ID,name,profileContent,phone,education,skills)'
+  								+ ' values (?, ?, ?, ?, ?, ?)', [ID,name,profileContent,phone,education,skills], function(err, results) {
 		if (err) throw err;
 	});
 });
