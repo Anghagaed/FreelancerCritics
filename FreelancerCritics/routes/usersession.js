@@ -18,12 +18,11 @@ class userSession {
 	      maxAge: 60, // currently lasts 1 min
         Path: '/'
 	    }));
-      res.cookie('username', String(username));
+      //res.cookie('username', String(username));
       // Redirect back after setting cookie 
       // res.statusCode = 302;
       // res.setHeader('Location', req.headers.referer || '/');
-      console.log("Successfully generated cookie");
-      console.log(req.cookies);
+      console.log("Successfully generated cookie" + this.FindSession(req));
     }
     // Checks whether a user exists or not
     // Returns the username if found or "" if not found

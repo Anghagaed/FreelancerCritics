@@ -2,7 +2,7 @@ var profileQuery = function(req, res) {
 	var userSession = require('./usersession.js');
   var session = new userSession();
   var username =session.FindSession(req);
-  username = req.body.username;
+  console.log('profile username: '+username);
 	// Handles db operations
 	var DB = require('./DBClass.js');
 	// Make the new class
@@ -20,8 +20,6 @@ var profileQuery = function(req, res) {
   	});
 	
 	con.PrepQuery(" SELECT name, profileContent, phone, education, skills FROM User, Profile  WHERE User.ID=Profile.ID AND username=?;", [username],function (err, result){
-		
-console.log("SARAH IS TIRED.");
 
 		if (err) console.log("THERE IS ERROR");
 

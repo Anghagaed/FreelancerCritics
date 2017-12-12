@@ -5,7 +5,6 @@ var loginAuthentication = function(req, res) {
 	var session = new userSession();
 	var username = req.body.username;
 	var password = req.body.password;
-	console.log("username: " + username + " \npassword: " + password);
 	// Handles db operations
 	var DB = require('./DBClass.js');
 	// Make the new class
@@ -40,9 +39,9 @@ var loginAuthentication = function(req, res) {
 		if(plaintext_db == message) {
 			console.log("Login is successful. Generating a user session for " + username);
 			session.StartSession(String(username), res, req);
-			console.log("redirecting to profilepage.html");
-			var displayProfile = require('./profilepage');			
-			displayProfile(req,res);
+			//var displayProfile = require('./profilepage');			
+			//displayProfile(req,res);
+			res.redirect('redirect.html');
 			res.end();
 		}
 		else {
@@ -54,9 +53,9 @@ var loginAuthentication = function(req, res) {
 		console.log("Finished running");
 	});
 	
-	con.CloseConnection(function(err) {
-		if (err) throw err;
-		console.log("successfully closed");
-	});
+	// con.CloseConnection(function(err) {
+	// 	if (err) throw err;
+	// 	console.log("successfully closed");
+	// });
 }
 module.exports = loginAuthentication;

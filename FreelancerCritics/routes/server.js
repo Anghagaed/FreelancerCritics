@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
 	var userSession = require('./usersession.js');
 	var session = new userSession();
 	session.StartSession(String(""), res, req);
+	console.log("index: "+session.FindSession(req));
   	res.sendFile(__dirname + '/views/index.html');
 });
 
@@ -55,22 +56,15 @@ router.post('/master_login', function (req, res) {
 	var session = new userSession();
 	var username = "billydoe1";
 	session.StartSession(String(username), res, req);
-	console.log(req.cookies);
-
-	console.log("Hang stuff");
-	var request = require('request');
-
-	var requestData = {
-		
-	}
-
 	displayProfile(req,res);
 });
 
 // Search Redirects to Profile
 router.post('/redirectProfile', function(req, res) {
   var x = req.body.ID;
-  
+  var userSession = require('./usersession.js');
+	var session = new userSession();
+	console.log('redirectprofile: '+session.FindSession(req));
   console.log(x);
   res.redirect('/');
 });
@@ -82,6 +76,9 @@ router.post('/edit_authentication', function (req, res) {
 
 // Detects search request
 router.post('/searchInput', function(req, res) {
+	var userSession = require('./usersession.js');
+	var session = new userSession();
+	console.log('search: '+session.FindSession(req));
 	console.log("Search GET IS CALLED");
 	displaySearch(req, res);
 });
@@ -92,5 +89,9 @@ router.post('/displayProfile', function(req, res) {
 	displayProfile(req, res);
 });
 
+router.post('/gotoprofile', function(req, res) {
+	console.log("gotoprofile IS CALLED");
+	displayProfile(req, res);
+});
 
 module.exports = router;
