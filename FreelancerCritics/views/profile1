@@ -39,11 +39,6 @@
         </div>
       </div>
     </nav>
-  
-    <!--Profile edit button -->
-    <div class="container">
-    <a href="edit.html" class="btn btn-info" role="button">Edit</a>
-    </div>
     
     <table style="width:100%">
     <tr>

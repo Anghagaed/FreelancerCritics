@@ -61,12 +61,7 @@ router.post('/master_login', function (req, res) {
 
 // Search Redirects to Profile
 router.post('/redirectProfile', function(req, res) {
-  var x = req.body.ID;
-  var userSession = require('./usersession.js');
-	var session = new userSession();
-	console.log('redirectprofile: '+session.FindSession(req));
-  console.log(x);
-  res.redirect('/');
+   displayProfile(req,res);
 });
 
 //Detects edit confirmation
