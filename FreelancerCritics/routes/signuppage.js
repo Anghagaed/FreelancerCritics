@@ -3,6 +3,7 @@ var signup_confirmation = function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	var email = req.body.email;
+	var default_bio = "This is a profile bio.";
 	console.log("username: " + username + " \npassword: " + password + "\nemail: " + email);
 	// create database connection
     var mysql = require('mysql');
@@ -42,8 +43,8 @@ var signup_confirmation = function(req, res) {
 				var CryptoJS = require("crypto-js");
 				var ciphertext = CryptoJS.AES.encrypt(username+ID+email+password, password);
 				// prepared statement
-				var query = con.query('INSERT INTO User (ID,username,email,ciphertext)'
-			  								+ ' values (?, ?, ?, ?)', [ID,username,email,ciphertext.toString()], function(err, results) {
+				var query = con.query('INSERT INTO User (ID,username,email,ciphertext,profileBio)'
+			  								+ ' values (?, ?, ?, ?, ?)', [ID,username,email,ciphertext.toString(),default_bio], function(err, results) {
 					if (err) throw err;
 				});
 		  		// account is successfully created

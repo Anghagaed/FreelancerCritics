@@ -55,16 +55,6 @@ router.post('/master_login', function (req, res) {
 	res.redirect('profilepage.html');
 });
 
-// Search Redirects to Profile
-router.post('/redirectProfile', function(req, res) {
-  var x = req.body.Username;
-  var y = req.body.Name;
-  
-  console.log(x);
-  console.log(y);
-  res.redirect('/');
-});
-
 //Detects edit confirmation
 router.post('/edit_authentication', function (req, res) {
 	editAuth(req, res);
