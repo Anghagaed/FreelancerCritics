@@ -39,14 +39,67 @@
         </div>
       </div>
     </nav>
-	<h3>Username: billydoe1</h3>
-	<h3> Current Bio:</h3>
-	<p>I make a lot of cool things with tools, paint, glass, or wood. Come check out my page. Feel free to contact me for business opportunities.</p>
+	<h3>
+   
+  <script>
 
-	<h3>Review History</h3>
-	<p>October 31, 2017|Jill's Bakery|the bread was soggy</p>
-	<p>July 15, 2016| Mark's Woodshop|awesome chairs but hate the desks</p>
-	<h3>Write Review</h3>
+    // Handles user sessions
+    var userSession = require('./usersession.js');
+    var username = document.cookie;
+
+    // Handles db operations
+    var DB = require('./DBClass.js');
+    // Make the new class
+    var con = new DB();
+    // create database connection
+      con.OpenConnection(function(err) {
+        if(err) throw err;
+        console.log("connected!");
+      });
+      con.Query("USE app_db;", function (err, result) {
+        if (err) throw err;
+        console.log("using app_db");
+      });
+
+
+      con.PrepQuery("SELECT name, profileContent, phone, education, skills FROM User,Profile WHERE username = ? AND Profile.ID = User.ID", [username], function (err, result) {
+        // check for errors
+        console.log("THIS IS SARAH SPECIFIC");
+        if(err) throw err;  // throw error when necessary
+
+        if (result == undefined) {
+          console.log("Query is not working");
+          res.Redirects('/');
+        }
+
+        // row not found case
+        if(result.length == 0) {
+          console.log("username not found");
+          console.log("redirecting to profilepage.html");
+        res.redirect('profilepage.html');
+          return;
+        }
+        
+        console.log("username found");
+        var names = result[0].name;
+        var profileC = result[0].profileContent;
+      var phone = result[0].phone;
+        var education = result[0].education;
+        var skills = result[0].skills;
+        console.log("skills: " + skills);
+        
+      console.log("Finished running");
+    });
+    
+    //con.CloseConnection(function(err) {
+      //if (err) throw err;
+      //console.log("successfully closed");
+      document.write("hwllo peos");
+      document.write(profileC);
+    //});
+  </script> 
+
+  </h3>
 
     <!--Profile edit button -->
     <div class="container">
