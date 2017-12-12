@@ -61,6 +61,7 @@ router.post('/master_login', function (req, res) {
 
 // Search Redirects to Profile
 router.post('/redirectProfile', function(req, res) {
+	console.log(req.body.username);
    displayProfile(req,res);
 });
 

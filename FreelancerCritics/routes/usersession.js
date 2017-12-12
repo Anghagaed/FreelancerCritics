@@ -15,7 +15,7 @@ class userSession {
     StartSession (username, res, req) {
     	res.setHeader('Set-Cookie', cookie.serialize('username', String(username), {
 	      httpOnly: false,
-	      maxAge: 60, // currently lasts 1 min
+	      maxAge: 60*60, // currently lasts 60 min
         Path: '/'
 	    }));
       //res.cookie('username', String(username));

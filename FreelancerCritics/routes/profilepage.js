@@ -8,11 +8,11 @@ var profileQuery = function(req, res) {
   if (req.body.ID == undefined) {
   	profileUser = session.FindSession(req);
   } else {
+  	console.log('profile username: '+profileUser);
   	profileUser = req.body.ID;
-  	if (profileUser == username) {
-  		profileUser = username;
-  	}
   }
+
+  
 	// Handles db operations
 	var DB = require('./DBClass.js');
 	// Make the new class
@@ -29,7 +29,7 @@ var profileQuery = function(req, res) {
     	console.log("using app_db");
   	});
 	
-	con.PrepQuery(" SELECT name, profileContent, phone, education, skills FROM User, Profile  WHERE User.ID=Profile.ID AND username=?;", [username],function (err, result){
+	con.PrepQuery("SELECT name, profileContent, phone, education, skills FROM User, Profile  WHERE User.ID=Profile.ID AND (username=? OR User.ID=?);", [profileUser, profileUser],function (err, result){
 
 		if (err) console.log("THERE IS ERROR");
 
@@ -68,6 +68,8 @@ var profileQuery = function(req, res) {
 			var education=result[0].education.toString();
 			var skills = result[0].skills.toString();
       var button = "";
+      console.log("Inside Query Profile User: " + profileUser);
+      console.log("Inside Query username: " + username);
       if(profileUser == username){ //user visits their own profile page 
       	button = fs.readFileSync('./views/profile3', 'utf8');
       }

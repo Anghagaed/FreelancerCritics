@@ -47,7 +47,7 @@
               // user detected
               else {
                 document.getElementById("loginorlogout").innerHTML = "<a href='loginpage.html'><span class='glyphicon glyphicon-log-out'></span> Logout</a>";
-                document.getElementById("signuporprofile").innerHTML = "<a href='profilepage.html'><span class='glyphicon glyphicon-star-empty'></span> Profile</a>";
+                document.getElementById("signuporprofile").innerHTML = "<a href='redirect.html'><span class='glyphicon glyphicon-star-empty'></span> Profile</a>";
               }
             </script>
 	        </ul>

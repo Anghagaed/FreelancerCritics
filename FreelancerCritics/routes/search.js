@@ -62,7 +62,7 @@ var displaySearchQuery = function(req, res) {
 	
 	queryString = "%" + queryString + "%";
 	
-	con.PrepQuery("SELECT User.ID, Profile.name, Profile.skills FROM User, Profile WHERE User.ID=Profile.ID AND (Profile.name LIKE ? OR Profile.education LIKE ? OR Profile.skills LIKE ?);", [queryString, queryString, queryString], function (err, result){
+	con.PrepQuery("SELECT User.username, User.ID, Profile.name, Profile.skills FROM User, Profile WHERE User.ID=Profile.ID AND (Profile.name LIKE ? OR Profile.education LIKE ? OR Profile.skills LIKE ?);", [queryString, queryString, queryString], function (err, result){
 		
 		if (err) console.log("THERE IS ERROR");
 
@@ -113,7 +113,7 @@ var displaySearchQuery = function(req, res) {
 				body = body + "<th>" + skills + "</th>";
 			}
 			var finalHTML = (read1 + body + read2).toString();
-			console.log(finalHTML);
+			
 			res.send(finalHTML);
 		}
 
