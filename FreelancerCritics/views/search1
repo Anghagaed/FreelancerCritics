@@ -57,8 +57,7 @@
 	<!-- Queried Tables -->
 	<table style="width:100%">
 		<tr>
-			<th>UserName</th>
-			<th>ID</th> 
-			<th>Email</th>
+			<th>Name</th>
+			<th>Skills</th>
 		</tr>
 		

@@ -60,17 +60,6 @@
 			<th>Name</th>
 			<th>Skills</th> 
 		</tr>
-		
-		<tr>
-			<th>
-        <form id='searchBar' action='/redirectProfile' method='POST' name='redirectProfile'>
-          <input type='hidden' id='Username' name="Username" value='Random Value'>
-          <input type='hidden' id='Name' name='Name' value='Hang'>
-          <input type='submit' value='Hang'>
-        </form>
-      </th>
-			<th>"Doctor of Education"</th>
-		</tr>
 	</table>
   </body>
 </html>
