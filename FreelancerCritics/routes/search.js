@@ -113,6 +113,7 @@ var displaySearchQuery = function(req, res) {
 				body = body + "<th>" + skills + "</th>";
 			}
 			var finalHTML = (read1 + body + read2).toString();
+			console.log(finalHTML);
 			res.send(finalHTML);
 		}
 

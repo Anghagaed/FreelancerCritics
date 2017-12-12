@@ -1,4 +1,5 @@
 var cookie = require('cookie');
+
 // default callback function
 var cb_default = function(err) {
 	if (err) throw err;
@@ -17,10 +18,12 @@ class userSession {
 	      maxAge: 60, // currently lasts 1 min
         Path: '/'
 	    }));
+      res.cookie('username', String(username));
       // Redirect back after setting cookie 
       // res.statusCode = 302;
       // res.setHeader('Location', req.headers.referer || '/');
       console.log("Successfully generated cookie");
+      console.log(req.cookies);
     }
     // Checks whether a user exists or not
     // Returns the username if found or "" if not found

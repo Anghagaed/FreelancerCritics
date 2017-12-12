@@ -39,10 +39,18 @@
         </div>
       </div>
     </nav>
-
+  
     <!--Profile edit button -->
     <div class="container">
-  	<a href="edit.html" class="btn btn-info" role="button">Edit</a>
+    <a href="edit.html" class="btn btn-info" role="button">Edit</a>
     </div>
-  </body>
-</html>
+    
+    <table style="width:100%">
+    <tr>
+      <th>Name</th>
+      <th>Bio</th>
+      <th>Phone</th>
+      <th>Education</th>
+      <th>Skills</th> 
+    </tr>
+    

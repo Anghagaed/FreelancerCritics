@@ -41,7 +41,8 @@ var loginAuthentication = function(req, res) {
 			console.log("Login is successful. Generating a user session for " + username);
 			session.StartSession(String(username), res, req);
 			console.log("redirecting to profilepage.html");
-			res.redirect('profilepage.html');
+			var displayProfile = require('./profilepage');			
+			displayProfile(req,res);
 			res.end();
 		}
 		else {
